@@ -18,5 +18,5 @@ public class CustomerController {
     public List<CustomerDTO> getCustomerList() {
         return customerService.getCustomerList();
     }
-    
+
 }
