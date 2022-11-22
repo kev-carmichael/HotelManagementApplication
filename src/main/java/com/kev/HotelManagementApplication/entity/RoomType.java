@@ -19,5 +19,5 @@ import javax.persistence.Table;
 public class RoomType {
     @Id
     private int roomTypeId;
-    private String Type; //substitute for enum?
+    private String type; //substitute for enum?
 }
