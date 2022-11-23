@@ -20,7 +20,7 @@ public class Customer {
     private int id;
     private String name;
 
-    @ManyToOne
+    @ManyToOne // OR NONE AS PER ERD DIAGRAM?
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 

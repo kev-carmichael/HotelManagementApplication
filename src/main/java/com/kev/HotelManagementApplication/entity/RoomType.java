@@ -20,4 +20,12 @@ public class RoomType {
     @Id
     private int roomTypeId;
     private String type; //substitute for enum?
+    @Override
+    public String toString()
+    {
+        return String.format(
+                "%s",
+                type);
+    }
+
 }

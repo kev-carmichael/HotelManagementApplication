@@ -24,7 +24,8 @@ public class DTOFactory {
         RoomDTO roomDTO =
                 new RoomDTO(
                         room.getRoomId(),
-                        room.getRoomNumber());
+                        room.getRoomNumber(),
+                        room.getRoomType().toString());
         return roomDTO;
     }
 

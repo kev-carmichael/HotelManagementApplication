@@ -28,7 +28,8 @@ CREATE TABLE room_type
 CREATE TABLE room
 (
     room_id     integer primary key auto_increment,
-    room_number varchar(6) not null
+    room_number varchar(6) not null,
+    room_type   integer not null
 );
 
 
@@ -46,7 +47,7 @@ INSERT INTO room_type (type)
 VALUES ('SINGLE'),
        ('DOUBLE');
 
-INSERT INTO room (room_number)
-VALUES ('101'),
-       ('202'),
-       ('303');
+INSERT INTO room (room_number, room_type)
+VALUES ('101', 1),
+       ('202', 2),
+       ('303', 2);
