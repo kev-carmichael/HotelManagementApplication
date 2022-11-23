@@ -3,3 +3,6 @@ GET http://localhost:8080/customer/all
 
 ###
 GET http://localhost:8080/room/all
+
+###
+GET http://localhost:8080/roomtype/all

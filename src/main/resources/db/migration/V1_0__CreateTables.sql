@@ -1,5 +1,6 @@
 DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS address;
+DROP TABLE IF EXISTS room_type;
 DROP TABLE IF EXISTS room;
 
 CREATE TABLE address
@@ -18,6 +19,12 @@ CREATE TABLE customer
     address integer     not null
 );
 
+CREATE TABLE room_type
+(
+    room_type_id      integer primary key auto_increment,
+    type    varchar(50) not null
+);
+
 CREATE TABLE room
 (
     room_id     integer primary key auto_increment,
@@ -34,6 +41,10 @@ INSERT INTO customer (name, address)
 VALUES ('Customer #1', 1),
        ('Customer #2', 2),
        ('Customer #3', 3);
+
+INSERT INTO room_type (type)
+VALUES ('SINGLE'),
+       ('DOUBLE');
 
 INSERT INTO room (room_number)
 VALUES ('101'),
