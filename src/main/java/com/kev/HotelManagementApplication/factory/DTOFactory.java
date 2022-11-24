@@ -37,5 +37,12 @@ public class DTOFactory {
         return roomTypeDTO;
     }
 
+    public RoomTypeDTO createDTO(int roomTypeId, String type) {
+
+        RoomTypeDTO roomTypeDTO =
+                new RoomTypeDTO(roomTypeId, type);
+        return roomTypeDTO;
+    }
+
 
 }
