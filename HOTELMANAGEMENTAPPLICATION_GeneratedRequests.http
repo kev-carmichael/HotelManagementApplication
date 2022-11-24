@@ -9,3 +9,6 @@ GET http://localhost:8080/roomtype/all
 
 ###
 POST http://localhost:8080/roomtype/add/SUITE
+
+###
+DELETE http://localhost:8080/roomtype/delete/3

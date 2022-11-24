@@ -19,22 +19,36 @@ public class RoomTypeService {
 
     public List<RoomTypeDTO> getRoomTypeList() {
         List<RoomTypeDTO> list = new ArrayList<>();
-        for (RoomType roomType : roomTypeRepository.findAll()){
+        for (RoomType roomType : roomTypeRepository.findAll()) {
             RoomTypeDTO roomTypeDTO = dtoFactory.createDTO(roomType);
             list.add(roomTypeDTO);
         }
         return list;
     }
 
-    public RoomTypeDTO addRoomType(String type){
+    public RoomTypeDTO addRoomType(String type) {
 
         int size = roomTypeRepository.findAll().size();
 
         //is it ok for Service to know about RoomType entity for planned architecture?
-        RoomType roomType = new RoomType((size+1), type);
+        RoomType roomType = new RoomType((size + 1), type);
         roomTypeRepository.save(roomType); //this is saving the new room type
 
-        return dtoFactory.createDTO((size+1), type);
+        return dtoFactory.createDTO((size + 1), type);
     }
+
+    public boolean deleteRoomType(int id) {
+        if (roomTypeRepository.existsById(id)) {
+            try {
+                roomTypeRepository.deleteById(id);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace(System.err);
+                return false;
+            }
+        }
+        return false;
+    }
+
 
 }

@@ -24,4 +24,10 @@ public class RoomTypeController {
         return roomTypeService.addRoomType(type);
     }
 
+    @DeleteMapping(path = "/delete/{id}")
+    public boolean deleteRoomType(@PathVariable(name = "id") int id)
+    {
+        return roomTypeService.deleteRoomType(id);
+    }
+
 }
