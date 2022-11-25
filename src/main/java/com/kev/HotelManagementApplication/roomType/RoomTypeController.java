@@ -30,4 +30,11 @@ public class RoomTypeController {
         return roomTypeService.deleteRoomType(id);
     }
 
+    @PostMapping(path = "/update/{id}/{type}")
+    public RoomTypeDTO updateRoomType(@PathVariable(name = "id") int id,
+                                          @PathVariable(name = "type") String type) {
+        return roomTypeService.updateRoomType(id, type);
+    }
+
+
 }

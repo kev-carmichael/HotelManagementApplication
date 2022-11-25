@@ -37,6 +37,21 @@ public class RoomTypeService {
         return dtoFactory.createDTO((size + 1), type);
     }
 
+    public RoomTypeDTO updateRoomType(int roomTypeId, String type) {
+
+        Optional<RoomType> originalRoomTypeDTO = roomTypeRepository.findById(roomTypeId);
+
+        if (!originalRoomTypeDTO.isPresent()) {
+            return null;
+        }
+
+        RoomType roomTypeEntity = originalRoomTypeDTO.get();
+        roomTypeEntity.setType(type);
+        roomTypeRepository.save(roomTypeEntity);
+
+        return dtoFactory.createDTO(roomTypeEntity);
+    }
+
     public boolean deleteRoomType(int id) {
         if (roomTypeRepository.existsById(id)) {
             try {

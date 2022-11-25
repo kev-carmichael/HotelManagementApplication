@@ -12,3 +12,6 @@ POST http://localhost:8080/roomtype/add/SUITE
 
 ###
 DELETE http://localhost:8080/roomtype/delete/3
+
+###
+POST http://localhost:8080/roomtype/update/3/BEING_REPAIRED
