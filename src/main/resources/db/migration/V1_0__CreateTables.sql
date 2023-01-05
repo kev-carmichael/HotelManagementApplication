@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS customer;
 DROP TABLE IF EXISTS address;
 DROP TABLE IF EXISTS room_type;
 DROP TABLE IF EXISTS room;
+DROP TABLE IF EXISTS booking;
 
 CREATE TABLE address
 (
@@ -34,6 +35,12 @@ CREATE TABLE room
     foreign key (room_type) references room_type(room_type_id)
 );
 
+CREATE TABLE booking
+(
+    booking_id      integer primary key auto_increment,
+    customer integer not null,
+    foreign key (customer) references customer(customer_id)
+);
 
 INSERT INTO address (street_number, street, town, postcode)
 VALUES ('1', 'A Avenue', 'Alpha Town', 'A1 1AA'),
@@ -48,6 +55,12 @@ VALUES ('Customer #1', 1),
 INSERT INTO room_type (type)
 VALUES ('SINGLE'),
        ('DOUBLE');
+
+INSERT INTO booking (customer)
+VALUES (1),
+       (2),
+       (3);
+
 
 INSERT INTO room (room_number, room_type)
 VALUES ('101', 1),

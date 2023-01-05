@@ -1,6 +1,8 @@
 package com.kev.HotelManagementApplication.factory;
 
+import com.kev.HotelManagementApplication.booking.BookingDTO;
 import com.kev.HotelManagementApplication.customer.CustomerDTO;
+import com.kev.HotelManagementApplication.entity.Booking;
 import com.kev.HotelManagementApplication.entity.Customer;
 import com.kev.HotelManagementApplication.entity.Room;
 import com.kev.HotelManagementApplication.entity.RoomType;
@@ -43,6 +45,17 @@ public class DTOFactory {
                 new RoomTypeDTO(roomTypeId, type);
         return roomTypeDTO;
     }
+
+    public BookingDTO createDTO(Booking booking) {
+        BookingDTO bookingDTO =
+                new BookingDTO(
+                        booking.getBookingId(),
+                        //booking.getDateIn(),
+                        //booking.getDateOut(),
+                        booking.getCustomer().toString());
+        return bookingDTO;
+    }
+
 
 
 }
