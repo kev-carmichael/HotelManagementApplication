@@ -16,7 +16,8 @@ CREATE TABLE customer
 (
     id      integer primary key auto_increment,
     name    varchar(50) not null,
-    address integer     not null
+    address integer not null,
+    foreign key (address) references address(address_id)
 );
 
 CREATE TABLE room_type

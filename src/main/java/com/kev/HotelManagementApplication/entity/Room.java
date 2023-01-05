@@ -24,8 +24,5 @@ public class Room {
     @ManyToOne
     @JoinColumn(name = "room_type", nullable = false)
     private RoomType roomType;
-    //does room need to be linked to HOtel???? or just Hotel has collection of Rooms
-    //must do otherwise if have two room 101's how do you know which hotel is belongs to?
-    // maybe leave  Hotel till last, as extra layer of complexity
 
 }
