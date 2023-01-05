@@ -14,7 +14,7 @@ CREATE TABLE address
 
 CREATE TABLE customer
 (
-    id      integer primary key auto_increment,
+    customer_id      integer primary key auto_increment,
     name    varchar(50) not null,
     address integer not null,
     foreign key (address) references address(address_id)

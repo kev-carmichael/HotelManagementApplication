@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Table(name = "customer")
 public class Customer {
     @Id
-    private int id;
+    private int customerId;
     private String name;
 
     @ManyToOne // OR NONE AS PER ERD DIAGRAM?

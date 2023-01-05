@@ -14,7 +14,7 @@ public class DTOFactory {
     public CustomerDTO createDTO(Customer customer) {
         CustomerDTO customerDTO =
                 new CustomerDTO(
-                        customer.getId(),
+                        customer.getCustomerId(),
                         customer.getName(),
                         customer.getAddress().toString());
         return customerDTO;
