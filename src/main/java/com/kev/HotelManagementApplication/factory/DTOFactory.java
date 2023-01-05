@@ -35,7 +35,8 @@ public class DTOFactory {
 
     public BookingDTO createDTO(Booking booking, CustomerDTO customerDTO) {
         return new BookingDTO(booking.getBookingId(), booking.getDateIn(),
-                booking.getDateOut(), booking.getCustomer().toString());
+                booking.getDateOut(), booking.getCustomer().toString(),
+                booking.getRoom().toString());
     }
 
     public CustomerDTO createSummaryDTO(Customer customer) {
@@ -79,7 +80,8 @@ public class DTOFactory {
                         booking.getBookingId(),
                         booking.getDateIn(),
                         booking.getDateOut(),
-                        booking.getCustomer().toString());
+                        booking.getCustomer().toString(),
+                        booking.getRoom().toString());
         return bookingDTO;
     }
 

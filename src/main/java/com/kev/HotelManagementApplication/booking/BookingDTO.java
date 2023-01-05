@@ -18,5 +18,6 @@ public class BookingDTO {
     private final LocalDate dateIn;
     private final LocalDate dateOut;
     private final String customer;
+    private final String Room;
 
 }

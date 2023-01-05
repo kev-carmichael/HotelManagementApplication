@@ -41,7 +41,9 @@ CREATE TABLE booking
     date_in    date    not null,
     date_out   date    not null,
     customer integer not null,
-    foreign key (customer) references customer(customer_id)
+    foreign key (customer) references customer(customer_id),
+    room integer not null,
+    foreign key (room) references room(room_id)
 );
 
 INSERT INTO address (street_number, street, town, postcode)
@@ -58,14 +60,14 @@ INSERT INTO room_type (type)
 VALUES ('SINGLE'),
        ('DOUBLE');
 
-INSERT INTO booking (date_in, date_out, customer)
-VALUES ('2023-03-26', '2023-04-02', 1),
-       ('2023-04-13', '2023-04-27', 2),
-       ('2023-06-09', '2023-06-16', 2),
-       ('2023-08-27', '2023-09-05', 2),
-       ('2023-12-20', '2023-12-30', 3);
-
 INSERT INTO room (room_number, room_type)
 VALUES ('101', 1),
        ('202', 2),
        ('303', 2);
+
+INSERT INTO booking (date_in, date_out, customer, room)
+VALUES ('2023-03-26', '2023-04-02', 1, 2),
+       ('2023-04-13', '2023-04-27', 2, 3),
+       ('2023-06-09', '2023-06-16', 2, 3),
+       ('2023-08-27', '2023-09-05', 2, 1),
+       ('2023-12-20', '2023-12-30', 3, 2);

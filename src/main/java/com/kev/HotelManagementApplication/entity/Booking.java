@@ -27,4 +27,8 @@ public class Booking {
     @JoinColumn(name = "customer", nullable = false) //must make sure column name is matched in the table in flyway
     private Customer customer;
 
+    @ManyToOne
+    @JoinColumn(name = "room", nullable = false) //must make sure column name is matched in the table in flyway
+    private Room room;
+
 }

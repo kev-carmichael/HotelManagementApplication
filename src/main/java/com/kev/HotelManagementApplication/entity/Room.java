@@ -25,4 +25,14 @@ public class Room {
     @JoinColumn(name = "room_type", nullable = false)
     private RoomType roomType;
 
+    @Override
+    public String toString()
+    {
+        return String.format(
+                "%s, %s",
+                roomNumber,
+                roomType);
+    }
+
+
 }
