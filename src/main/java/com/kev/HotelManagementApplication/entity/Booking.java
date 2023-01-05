@@ -20,8 +20,8 @@ import java.time.LocalDate;
 public class Booking {
     @Id
     private int bookingId;
-    //private LocalDate dateIn;
-    //private LocalDate dateOut;
+    private LocalDate dateIn;
+    private LocalDate dateOut;
 
     @ManyToOne
     @JoinColumn(name = "customer", nullable = false) //must make sure column name is matched in the table in flyway

@@ -15,8 +15,8 @@ import java.time.LocalDate;
 
 public class BookingDTO {
     private final int bookingId;
-    //private final LocalDate dateIn;
-    //private final LocalDate dateOut;
+    private final LocalDate dateIn;
+    private final LocalDate dateOut;
     private final String customer;
 
 }
