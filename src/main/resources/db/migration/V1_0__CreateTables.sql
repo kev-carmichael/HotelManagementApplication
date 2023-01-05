@@ -30,7 +30,8 @@ CREATE TABLE room
 (
     room_id     integer primary key auto_increment,
     room_number varchar(6) not null,
-    room_type   integer not null
+    room_type   integer not null,
+    foreign key (room_type) references room_type(room_type_id)
 );
 
 
