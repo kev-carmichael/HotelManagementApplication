@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -24,6 +25,10 @@ public class Customer {
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
+    @OneToMany(mappedBy = "customer")
+    @OrderBy(value = "bookingId")
+    private List<Booking> bookings;
+
     @Override
     public String toString()
     {
@@ -31,6 +36,11 @@ public class Customer {
                 "%s, %s",
                 name,
                 address);
+    }
+
+    public int getBookingCount()
+    {
+        return bookings.size();
     }
 
 }

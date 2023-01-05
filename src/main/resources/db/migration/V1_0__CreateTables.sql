@@ -59,8 +59,9 @@ VALUES ('SINGLE'),
 INSERT INTO booking (customer)
 VALUES (1),
        (2),
+       (2),
+       (2),
        (3);
-
 
 INSERT INTO room (room_number, room_type)
 VALUES ('101', 1),

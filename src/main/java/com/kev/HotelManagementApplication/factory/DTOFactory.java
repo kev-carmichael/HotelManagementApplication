@@ -10,6 +10,10 @@ import com.kev.HotelManagementApplication.room.RoomDTO;
 import com.kev.HotelManagementApplication.roomType.RoomTypeDTO;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class DTOFactory {
 
@@ -19,7 +23,29 @@ public class DTOFactory {
                         customer.getCustomerId(),
                         customer.getName(),
                         customer.getAddress().toString());
+                        customerDTO.setNumberOfBookings(customer.getBookingCount());
+                        customerDTO.setBookings(createDTOList(customer.getBookings()));
         return customerDTO;
+    }
+
+    public List<BookingDTO> createDTOList(List<Booking> bookings) {
+        CustomerDTO customerDTO = createSummaryDTO(bookings.stream().findFirst().get().getCustomer());
+        return bookings.stream().map(booking -> createDTO(booking, customerDTO)).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public BookingDTO createDTO(Booking booking, CustomerDTO customerDTO) {
+        return new BookingDTO(booking.getBookingId(), booking.getCustomer().toString());
+    }
+
+    public CustomerDTO createSummaryDTO(Customer customer) {
+        CustomerDTO customerDTO =
+                new CustomerDTO(
+                        customer.getCustomerId(),
+                        customer.getName(),
+                        customer.getAddress().toString());
+                customerDTO.setNumberOfBookings(customer.getBookingCount());
+
+                return customerDTO;
     }
 
     public RoomDTO createDTO(Room room) {
