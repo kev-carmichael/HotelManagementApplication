@@ -1,12 +1,16 @@
 package com.kev.HotelManagementApplication.booking;
 
 import com.kev.HotelManagementApplication.entity.Booking;
+import com.kev.HotelManagementApplication.entity.RoomType;
 import com.kev.HotelManagementApplication.factory.DTOFactory;
+import com.kev.HotelManagementApplication.roomType.RoomTypeDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -39,5 +43,24 @@ public class BookingService {
         }
         return false;
     }
+
+    public BookingDTO updateBooking(int bookingId, String dateIn, String dateOut) {
+
+        Optional<Booking> originalBookingDTO = bookingRepository.findById(bookingId);
+
+        if (!originalBookingDTO.isPresent()) {
+            return null;
+        }
+
+        Booking bookingEntity = originalBookingDTO.get();
+        LocalDate parsedDateIn = LocalDate.parse(dateIn);
+        LocalDate parsedDateOut = LocalDate.parse(dateOut);
+        bookingEntity.setDateIn(parsedDateIn);
+        bookingEntity.setDateOut(parsedDateOut);
+        bookingRepository.save(bookingEntity);
+
+        return dtoFactory.createDTO(bookingEntity);
+    }
+
 
 }
