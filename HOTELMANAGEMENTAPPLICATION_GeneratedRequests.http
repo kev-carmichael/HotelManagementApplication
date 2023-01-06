@@ -18,3 +18,6 @@ POST http://localhost:8080/roomtype/update/3/BEING_REPAIRED
 
 ###
 GET http://localhost:8080/booking/all
+
+###
+DELETE http://localhost:8080/booking/delete/2

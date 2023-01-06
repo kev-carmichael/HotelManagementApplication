@@ -2,9 +2,7 @@ package com.kev.HotelManagementApplication.booking;
 
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,4 +16,11 @@ public class BookingController {
     public List<BookingDTO> getBookingList(){
         return bookingService.getBookingList();
     }
+
+    @DeleteMapping(path = "/delete/{id}")
+    public boolean deleteBooking(@PathVariable(name = "id") int id)
+    {
+        return bookingService.deleteBooking(id);
+    }
+
 }

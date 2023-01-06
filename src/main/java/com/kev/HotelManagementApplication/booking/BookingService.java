@@ -26,4 +26,18 @@ public class BookingService {
         }
         return list;
     }
+
+    public boolean deleteBooking(int id) {
+        if (bookingRepository.existsById(id)) {
+            try {
+                bookingRepository.deleteById(id);
+                return true;
+            } catch (Exception e) {
+                e.printStackTrace(System.err);
+                return false;
+            }
+        }
+        return false;
+    }
+
 }
