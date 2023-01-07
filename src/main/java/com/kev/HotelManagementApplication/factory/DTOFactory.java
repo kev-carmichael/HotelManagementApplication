@@ -1,6 +1,7 @@
 package com.kev.HotelManagementApplication.factory;
 
 import com.kev.HotelManagementApplication.booking.BookingDTO;
+import com.kev.HotelManagementApplication.customer.CustomerBookingsDTO;
 import com.kev.HotelManagementApplication.customer.CustomerDTO;
 import com.kev.HotelManagementApplication.entity.Booking;
 import com.kev.HotelManagementApplication.entity.Customer;
@@ -28,6 +29,13 @@ public class DTOFactory {
                         customerDTO.setBookings(createDTOList(customer.getBookings()));
         return customerDTO;
     }
+
+    public CustomerBookingsDTO createCustomerBookingsDTO(Customer customer) {
+        CustomerBookingsDTO customerBookingsDTO =
+                new CustomerBookingsDTO(createDTOList(customer.getBookings()));
+        return customerBookingsDTO;
+    }
+
 
     public List<BookingDTO> createDTOList(List<Booking> bookings) {
         CustomerDTO customerDTO = createSummaryDTO(bookings.stream().findFirst().get().getCustomer());

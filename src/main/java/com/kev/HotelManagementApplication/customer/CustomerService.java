@@ -24,4 +24,15 @@ public class CustomerService {
         return list;
     }
 
+    public CustomerBookingsDTO getCustomerBookingList(int customerId) {
+        for (Customer customer : customerRepository.findAll()){
+            if(customer.getCustomerId() == customerId){
+                CustomerBookingsDTO customerBookingsDTO =
+                        dtoFactory.createCustomerBookingsDTO(customer);
+                return customerBookingsDTO;
+            }
+        }
+        return null;
+    }
+
 }
