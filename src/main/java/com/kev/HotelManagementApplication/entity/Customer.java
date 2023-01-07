@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -20,6 +21,7 @@ public class Customer {
     @Id
     private int customerId;
     private String name;
+    private LocalDate dob;
 
     @ManyToOne // OR NONE AS PER ERD DIAGRAM?
     @JoinColumn(name = "address", nullable = false)

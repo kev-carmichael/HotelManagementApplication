@@ -17,6 +17,7 @@ CREATE TABLE customer
 (
     customer_id      integer primary key auto_increment,
     name    varchar(50) not null,
+    dob    date    not null,
     address integer not null,
     foreign key (address) references address(address_id)
 );
@@ -51,10 +52,10 @@ VALUES ('1', 'A Avenue', 'Alpha Town', 'A1 1AA'),
        ('2', 'B Boulevard', 'Bravo Town', 'B2 2BB'),
        ('3', 'C Close', 'Charles Town', 'C3 3CC');
 
-INSERT INTO customer (name, address)
-VALUES ('Customer #1', 1),
-       ('Customer #2', 2),
-       ('Customer #3', 3);
+INSERT INTO customer (name, address, dob)
+VALUES ('Customer #1', 1, '1951-04-13'),
+       ('Customer #2', 2, '1970-11-22'),
+       ('Customer #3', 3, '1992-12-05');
 
 INSERT INTO room_type (type)
 VALUES ('SINGLE'),

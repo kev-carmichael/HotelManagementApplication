@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -17,6 +18,7 @@ import java.util.List;
 public class CustomerDTO {
     private final int customerId;
     private final String name;
+    private final LocalDate dob;
     private final String address;
     private int numberOfBookings;
     private List<BookingDTO> bookings;

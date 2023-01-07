@@ -22,6 +22,7 @@ public class DTOFactory {
                 new CustomerDTO(
                         customer.getCustomerId(),
                         customer.getName(),
+                        customer.getDob(),
                         customer.getAddress().toString());
                         customerDTO.setNumberOfBookings(customer.getBookingCount());
                         customerDTO.setBookings(createDTOList(customer.getBookings()));
@@ -44,6 +45,7 @@ public class DTOFactory {
                 new CustomerDTO(
                         customer.getCustomerId(),
                         customer.getName(),
+                        customer.getDob(),
                         customer.getAddress().toString());
                 customerDTO.setNumberOfBookings(customer.getBookingCount());
 
