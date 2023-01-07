@@ -1,8 +1,12 @@
 package com.kev.HotelManagementApplication.booking;
 
+import com.kev.HotelManagementApplication.customer.CustomerRepository;
 import com.kev.HotelManagementApplication.entity.Booking;
+import com.kev.HotelManagementApplication.entity.Customer;
+import com.kev.HotelManagementApplication.entity.Room;
 import com.kev.HotelManagementApplication.entity.RoomType;
 import com.kev.HotelManagementApplication.factory.DTOFactory;
+import com.kev.HotelManagementApplication.room.RoomRepository;
 import com.kev.HotelManagementApplication.roomType.RoomTypeDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +21,9 @@ import java.util.Optional;
 public class BookingService {
     private final BookingRepository bookingRepository;
     private DTOFactory dtoFactory;
+    private final CustomerRepository customerRepository;
+    private final RoomRepository roomRepository;
+
 
     //Need to add some logic to methods for dates:
     // e.g. dateIn is at least current date
@@ -30,6 +37,31 @@ public class BookingService {
         }
         return list;
     }
+
+    public Booking createBooking(String dateIn, String dateOut, int customerid, int roomid) {
+
+        Optional<Customer> customer = customerRepository.
+                findById(customerid);
+
+        Optional<Room> room = roomRepository.
+                findById(roomid);
+
+        if (customer.isPresent()) {
+            LocalDate parsedDateIn = LocalDate.parse(dateIn);
+            LocalDate parsedDateOut = LocalDate.parse(dateOut);
+            int size = bookingRepository.findAll().size();
+            Booking booking = new Booking(
+                    (size + 1),
+                    parsedDateIn,
+                    parsedDateOut,
+                    customer.get(),
+                    room.get());
+            return bookingRepository.save(booking);
+        }
+
+        return null;
+    }
+
 
     public boolean deleteBooking(int id) {
         if (bookingRepository.existsById(id)) {

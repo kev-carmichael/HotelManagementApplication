@@ -1,6 +1,7 @@
 package com.kev.HotelManagementApplication.booking;
 
 
+import com.kev.HotelManagementApplication.factory.DTOFactory;
 import com.kev.HotelManagementApplication.roomType.RoomTypeDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -13,11 +14,23 @@ import java.util.List;
 @AllArgsConstructor
 public class BookingController {
     private final BookingService bookingService;
+    private final DTOFactory dtoFactory;
 
     @GetMapping(path="/all")
     public List<BookingDTO> getBookingList(){
         return bookingService.getBookingList();
     }
+
+    @PostMapping(path = "/add/{datein}/{dateout}/{customerid}/{roomid}")
+    public BookingDTO addBooking(@PathVariable("datein") String dateIn,
+                                 @PathVariable("dateout") String dateOut,
+                                 @PathVariable("customerid") int customerid,
+                                 @PathVariable("roomid") int roomid)
+    {
+        return dtoFactory.createDTO(bookingService.createBooking
+                (dateIn, dateOut, customerid, roomid));
+    }
+
 
     @DeleteMapping(path = "/delete/{id}")
     public boolean deleteBooking(@PathVariable(name = "id") int id)
