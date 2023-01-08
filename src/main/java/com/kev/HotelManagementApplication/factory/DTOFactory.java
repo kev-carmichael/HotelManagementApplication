@@ -13,20 +13,35 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Component
 public class DTOFactory {
 
     public CustomerDTO createDTO(Customer customer) {
+        try {
+            CustomerDTO customerDTO =
+                    new CustomerDTO(
+                            customer.getCustomerId(),
+                            customer.getName(),
+                            customer.getDob(),
+                            customer.getAddress().toString());
+            customerDTO.setNumberOfBookings(customer.getBookingCount());
+            customerDTO.setBookings(createDTOList(customer.getBookings()));
+            return customerDTO;
+        } catch (NoSuchElementException e) {
+            return createDTOWithoutBookings(customer);
+        }
+    }
+
+    public CustomerDTO createDTOWithoutBookings(Customer customer) {
         CustomerDTO customerDTO =
                 new CustomerDTO(
                         customer.getCustomerId(),
                         customer.getName(),
                         customer.getDob(),
                         customer.getAddress().toString());
-                        customerDTO.setNumberOfBookings(customer.getBookingCount());
-                        customerDTO.setBookings(createDTOList(customer.getBookings()));
         return customerDTO;
     }
 
@@ -94,7 +109,5 @@ public class DTOFactory {
                         booking.getRoom().toString());
         return bookingDTO;
     }
-
-
 
 }
