@@ -30,9 +30,8 @@ public class RoomTypeService {
 
         int size = roomTypeRepository.findAll().size();
 
-        //is it ok for Service to know about RoomType entity for planned architecture?
         RoomType roomType = new RoomType((size + 1), type);
-        roomTypeRepository.save(roomType); //this is saving the new room type
+        roomTypeRepository.save(roomType);
 
         return dtoFactory.createDTO((size + 1), type);
     }
