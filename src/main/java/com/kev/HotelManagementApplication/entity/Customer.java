@@ -19,6 +19,7 @@ import java.util.List;
 @Table(name = "customer")
 public class Customer {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerId;
     private String name;
     private LocalDate dob;

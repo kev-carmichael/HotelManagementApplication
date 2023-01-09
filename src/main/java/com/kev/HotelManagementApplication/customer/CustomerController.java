@@ -2,13 +2,17 @@ package com.kev.HotelManagementApplication.customer;
 
 import com.kev.HotelManagementApplication.factory.DTOFactory;
 import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @RestController
 @RequestMapping("/customer")
 @AllArgsConstructor
+@Validated
 public class CustomerController {
 
     private final CustomerService customerService;
@@ -22,17 +26,19 @@ public class CustomerController {
 
     @GetMapping(path = "/allbookings/{customerid}")
     public CustomerBookingsDTO getCustomerBookingList
-            (@PathVariable(name = "customerid") int customerId) {
+            (@PathVariable(name = "customerid")
+             @Min(value = 1, message = "customerId must be greater than zero") int customerId) {
         return customerService.getCustomerBookingList(customerId);
     }
 
     @PostMapping(path = "/add/{name}/{dob}/{streetnumber}/{street}/{town}/{postcode}")
-    public CustomerDTO addCustomer(@PathVariable("name") String name,
-                                   @PathVariable("dob") String dob,
-                                   @PathVariable("streetnumber") String streetNumber,
-                                   @PathVariable("street") String street,
-                                   @PathVariable("town") String town,
-                                   @PathVariable("postcode") String postcode) {
+    public CustomerDTO addCustomer
+            (@PathVariable("name") @NotBlank(message = "Name cannot be blank") String name,
+             @PathVariable("dob")  @NotBlank(message = "dob cannot be blank") String dob,
+             @PathVariable("streetnumber") @NotBlank(message = "streetNumber cannot be blank") String streetNumber,
+             @PathVariable("street") @NotBlank(message = "street cannot be blank") String street,
+             @PathVariable("town") @NotBlank(message = "town cannot be blank") String town,
+             @PathVariable("postcode") @NotBlank(message = "postcode cannot be blank") String postcode) {
         return dtoFactory.createDTOWithoutBookings(customerService.createCustomer
                 (name, dob, streetNumber, street, town, postcode));
     }
