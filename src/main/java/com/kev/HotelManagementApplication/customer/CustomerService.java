@@ -4,6 +4,7 @@ package com.kev.HotelManagementApplication.customer;
 import com.kev.HotelManagementApplication.address.AddressRepository;
 import com.kev.HotelManagementApplication.entity.Address;
 import com.kev.HotelManagementApplication.entity.Customer;
+import com.kev.HotelManagementApplication.error.DobInFutureException;
 import com.kev.HotelManagementApplication.factory.DTOFactory;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -67,13 +68,19 @@ public class CustomerService {
         if(findIfAddressExists(streetNumber, postcode)) {
             return null;
         }
-        int addressSize = addressRepository.findAll().size();
-        Address address = new Address(addressSize + 1, streetNumber,
-                street, town, postcode);
+//        int addressSize = addressRepository.findAll().size();
+        Address address = new Address(0, streetNumber,
+                street, town, postcode); //can make id=0, as id is auto generated
         addressRepository.save(address);
 
-        //check if customer name & dob combination already exists
+        //check if dob is after today's date
         LocalDate parsedDob = LocalDate.parse(dob);
+        LocalDate today = LocalDate.now();
+        if(parsedDob.isAfter(today)){
+            throw new DobInFutureException(parsedDob);
+        }
+
+        //check if customer name & dob combination already exists
         if(nameAndDobAlreadyExist(name, parsedDob)) {
             return null;
         }
