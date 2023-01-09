@@ -5,6 +5,8 @@ import com.kev.HotelManagementApplication.entity.Booking;
 import com.kev.HotelManagementApplication.entity.Customer;
 import com.kev.HotelManagementApplication.entity.Room;
 import com.kev.HotelManagementApplication.entity.RoomType;
+import com.kev.HotelManagementApplication.error.DateInIsSameAsOrAfterDateOutException;
+import com.kev.HotelManagementApplication.error.DobInFutureException;
 import com.kev.HotelManagementApplication.factory.DTOFactory;
 import com.kev.HotelManagementApplication.room.RoomRepository;
 import com.kev.HotelManagementApplication.roomType.RoomTypeDTO;
@@ -46,9 +48,15 @@ public class BookingService {
         Optional<Room> room = roomRepository.
                 findById(roomid);
 
+        //check dateOut is later than dateIn
+        LocalDate parsedDateIn = LocalDate.parse(dateIn);
+        LocalDate parsedDateOut = LocalDate.parse(dateOut);
+        if(parsedDateIn.isAfter(parsedDateOut)||parsedDateIn==parsedDateOut){
+            throw new DateInIsSameAsOrAfterDateOutException();
+        }
+
+        //check existing customer and save booking
         if (customer.isPresent()) {
-            LocalDate parsedDateIn = LocalDate.parse(dateIn);
-            LocalDate parsedDateOut = LocalDate.parse(dateOut);
             int size = bookingRepository.findAll().size();
             Booking booking = new Booking(
                     (size + 1),

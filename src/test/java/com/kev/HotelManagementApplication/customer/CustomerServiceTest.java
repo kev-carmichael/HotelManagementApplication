@@ -21,15 +21,6 @@ class CustomerServiceTest {
 
         LocalDate dobFuture = LocalDate.now().plusYears(10);
 
-        CustomerDTO expectedCustomerDTO = new CustomerDTO(
-                1,
-                "Master A Test",
-                dobFuture,
-                "1, Test Street, Test Town, T35TY",
-                0,
-                null //doesn't matter for this test
-        );
-
         AddressRepository mockAddressRepository = mock(AddressRepository.class);
         CustomerRepository mockCustomerRepository = mock(CustomerRepository.class);
         DTOFactory mockDTOFactory = mock(DTOFactory.class);
@@ -37,15 +28,11 @@ class CustomerServiceTest {
         CustomerService customerService = new CustomerService(mockCustomerRepository,
                 mockDTOFactory, mockAddressRepository);
 
-
-
         assertThrows(
                 DobInFutureException.class,
                 ()->customerService.createCustomer("Master A Test", "2033-01-08",
                         "1", "Test Street", "Test Town", "T35TY")
-                //the_method_to_be_tested()
         );
-
     }
 
 }
