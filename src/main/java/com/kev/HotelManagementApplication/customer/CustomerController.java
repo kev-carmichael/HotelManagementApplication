@@ -31,7 +31,7 @@ public class CustomerController {
         return customerService.getCustomerBookingList(customerId);
     }
 
-    @PostMapping(path = "/add/{name}/{dob}/{streetnumber}/{street}/{town}/{postcode}")
+    @PostMapping(path = "/add/={name}/={dob}/={streetnumber}/={street}/={town}/={postcode}")
     public CustomerDTO addCustomer
             (@PathVariable("name") @NotBlank(message = "Name cannot be blank") String name,
              @PathVariable("dob")  @NotBlank(message = "dob cannot be blank") String dob,

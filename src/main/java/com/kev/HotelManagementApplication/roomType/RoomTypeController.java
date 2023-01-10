@@ -22,7 +22,7 @@ public class RoomTypeController {
     }
 
     //need to add error msg if add type that already exists
-    @PostMapping(path="/add/{type}")
+    @PostMapping(path="/add/={type}")
     public RoomTypeDTO addRoomType(
             @PathVariable("type")
             @NotBlank(message = "RoomType type cannot be blank") String type) {
@@ -37,7 +37,7 @@ public class RoomTypeController {
         return roomTypeService.deleteRoomType(id);
     }
 
-    @PostMapping(path = "/update/{id}/{type}")
+    @PostMapping(path = "/update/{id}/={type}")
     public RoomTypeDTO updateRoomType(
             @PathVariable(name = "id")
             @Min(value = 1, message = "roomTypeId must be greater than zero") int id,

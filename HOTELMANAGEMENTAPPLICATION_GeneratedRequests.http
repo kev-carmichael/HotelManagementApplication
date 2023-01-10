@@ -5,7 +5,7 @@ GET http://localhost:8080/customer/all
 GET http://localhost:8080/customer/allbookings/2
 
 ###
-POST http://localhost:8080/customer/add/Customer4/1971-06-11/44/New_Road/Newton/NE45TY
+POST http://localhost:8080/customer/add/=Customer4/=1971-06-11/=44/=New_Road/=Newton/=NE45TY
 
 ###
 GET http://localhost:8080/room/all
@@ -14,13 +14,13 @@ GET http://localhost:8080/room/all
 GET http://localhost:8080/roomtype/all
 
 ###
-POST http://localhost:8080/roomtype/add/SUITE
+POST http://localhost:8080/roomtype/add/=SUITE
 
 ###
 DELETE http://localhost:8080/roomtype/delete/3
 
 ###
-POST http://localhost:8080/roomtype/update/3/BEING_REPAIRED
+POST http://localhost:8080/roomtype/update/3/=BEING_REPAIRED
 
 ###
 GET http://localhost:8080/booking/all
