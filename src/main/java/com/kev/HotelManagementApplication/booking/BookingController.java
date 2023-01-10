@@ -6,6 +6,7 @@ import com.kev.HotelManagementApplication.roomType.RoomTypeDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -32,14 +33,16 @@ public class BookingController {
     }
 
 
-    @DeleteMapping(path = "/delete/{id}")
-    public boolean deleteBooking(@PathVariable(name = "id") int id)
+    @DeleteMapping(path = "/delete/={id}")
+    public boolean deleteBooking(@PathVariable(name = "id")
+                                 @Min(value = 1, message = "bookingId must be greater than zero") int id)
     {
         return bookingService.deleteBooking(id);
     }
 
-    @PostMapping(path = "/update/{id}/{datein}/{dateout}")
-    public BookingDTO updateBooking(@PathVariable(name = "id") int id,
+    @PostMapping(path = "/update/={id}/{datein}/{dateout}")
+    public BookingDTO updateBooking(@PathVariable(name = "id")
+                                    @Min(value = 1, message = "bookingId must be greater than zero") int id,
                                     @PathVariable(name = "datein")String dateIn,
                                     @PathVariable(name = "dateout")String dateOut) {
         return bookingService.updateBooking(id, dateIn, dateOut);
