@@ -19,6 +19,7 @@ import java.time.LocalDate;
 @Table(name = "booking")
 public class Booking {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bookingId;
     private LocalDate dateIn;
     private LocalDate dateOut;
