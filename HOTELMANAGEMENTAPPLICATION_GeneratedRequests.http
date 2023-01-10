@@ -32,4 +32,4 @@ POST http://localhost:8080/booking/add/2023-07-04/2023-07-11/2/2
 DELETE http://localhost:8080/booking/delete/=3
 
 ###
-POST http://localhost:8080/booking/update/=-1/2023-06-11/2023-06-16
+POST http://localhost:8080/booking/update/=1/2023-06-11/2023-06-16
