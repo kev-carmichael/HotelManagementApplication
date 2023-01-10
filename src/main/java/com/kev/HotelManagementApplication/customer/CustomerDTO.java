@@ -34,4 +34,7 @@ public class CustomerDTO {
     private int numberOfBookings;
 
     private List<BookingDTO> bookings;
+
+    @NotBlank(message = "Token cannot be blank")
+    private String token;
 }

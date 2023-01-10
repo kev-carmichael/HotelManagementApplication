@@ -6,10 +6,12 @@ import com.kev.HotelManagementApplication.entity.Address;
 import com.kev.HotelManagementApplication.entity.Customer;
 import com.kev.HotelManagementApplication.error.DobInFutureException;
 import com.kev.HotelManagementApplication.factory.DTOFactory;
+import com.kev.HotelManagementApplication.util.StringHasher;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,8 @@ public class CustomerService {
     private final CustomerRepository customerRepository;
     private DTOFactory dtoFactory;
     private final AddressRepository addressRepository;
+
+    private final StringHasher stringHasher;
 
     public List<CustomerDTO> getCustomerList() {
         List<CustomerDTO> list = new ArrayList<>();
@@ -85,13 +89,18 @@ public class CustomerService {
             return null;
         }
 
+        String token =
+                stringHasher.hashString(
+                        name + dob + postcode + ":" + LocalDateTime.now().toString());
+
         int customerSize = customerRepository.findAll().size();
         Customer customer = new Customer(
                 (customerSize + 1),
                 name,
                 parsedDob,
                 address,
-                null);
+                null,
+                token);
         return customerRepository.save(customer);
     }
 

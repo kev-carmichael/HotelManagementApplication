@@ -19,7 +19,8 @@ CREATE TABLE customer
     name    varchar(50) not null,
     dob    date    not null,
     address integer not null,
-    foreign key (address) references address(address_id)
+    foreign key (address) references address(address_id),
+    token varchar(50)
 );
 
 CREATE TABLE room_type

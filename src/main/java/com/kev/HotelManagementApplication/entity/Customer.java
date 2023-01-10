@@ -24,13 +24,14 @@ public class Customer {
     private String name;
     private LocalDate dob;
 
-    @ManyToOne // OR NONE AS PER ERD DIAGRAM?
+    @ManyToOne
     @JoinColumn(name = "address", nullable = false)
     private Address address;
 
     @OneToMany(mappedBy = "customer")
     @OrderBy(value = "bookingId")
     private List<Booking> bookings;
+    private String token;
 
     @Override
     public String toString()
