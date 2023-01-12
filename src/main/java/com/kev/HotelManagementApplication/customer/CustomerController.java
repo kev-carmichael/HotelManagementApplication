@@ -1,10 +1,12 @@
 package com.kev.HotelManagementApplication.customer;
 
 import com.kev.HotelManagementApplication.factory.DTOFactory;
+import com.kev.HotelManagementApplication.user.UserCredentialsDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
@@ -42,5 +44,13 @@ public class CustomerController {
         return dtoFactory.createDTOWithoutBookings(customerService.createCustomer
                 (name, dob, streetNumber, street, town, postcode));
     }
+
+    @PostMapping(path = "/checkcredentials/={name}")
+    public CustomerDTO checkCustomerCredentials
+            (@PathVariable("name") @NotBlank(message = "Name cannot be blank") String name) {
+        return dtoFactory.createDTOWithToken(customerService.checkCustomerCredentials(name));
+    }
+
+
 
 }

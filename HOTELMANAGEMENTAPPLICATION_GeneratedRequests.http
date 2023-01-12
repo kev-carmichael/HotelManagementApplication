@@ -33,3 +33,6 @@ DELETE http://localhost:8080/booking/delete/=3
 
 ###
 POST http://localhost:8080/booking/update/=1/2023-06-11/2023-06-16
+
+###
+POST http://localhost:8080/customer/checkcredentials/=Customer4

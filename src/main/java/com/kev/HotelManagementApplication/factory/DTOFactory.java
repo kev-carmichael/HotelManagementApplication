@@ -3,6 +3,7 @@ package com.kev.HotelManagementApplication.factory;
 import com.kev.HotelManagementApplication.booking.BookingDTO;
 import com.kev.HotelManagementApplication.customer.CustomerBookingsDTO;
 import com.kev.HotelManagementApplication.customer.CustomerDTO;
+import com.kev.HotelManagementApplication.customer.CustomerRepository;
 import com.kev.HotelManagementApplication.entity.Booking;
 import com.kev.HotelManagementApplication.entity.Customer;
 import com.kev.HotelManagementApplication.entity.Room;
@@ -18,6 +19,11 @@ import java.util.stream.Collectors;
 
 @Component
 public class DTOFactory {
+    private final CustomerRepository customerRepository;
+
+    public DTOFactory(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
 
     public CustomerDTO createDTO(Customer customer) {
         try {
@@ -29,6 +35,7 @@ public class DTOFactory {
                             customer.getAddress().toString());
             customerDTO.setNumberOfBookings(customer.getBookingCount());
             customerDTO.setBookings(createDTOList(customer.getBookings()));
+            customer.getToken();
             return customerDTO;
         } catch (NoSuchElementException e) {
             return createDTOWithoutBookings(customer);
@@ -109,5 +116,25 @@ public class DTOFactory {
                         booking.getRoom().toString());
         return bookingDTO;
     }
+
+    public CustomerDTO createDTOWithToken(Customer customer) {
+        if (customer == null)
+        {
+            return null;
+        }
+
+        CustomerDTO customerDTO =
+                new CustomerDTO(
+                        customer.getCustomerId(),
+                        customer.getName(),
+                        customer.getDob(),
+                        customer.getAddress().toString(),
+                        0,
+                        null,
+                        customer.getToken());
+
+        return customerDTO;
+    }
+
 
 }

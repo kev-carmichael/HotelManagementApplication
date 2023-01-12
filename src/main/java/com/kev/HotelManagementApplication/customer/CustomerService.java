@@ -6,23 +6,27 @@ import com.kev.HotelManagementApplication.entity.Address;
 import com.kev.HotelManagementApplication.entity.Customer;
 import com.kev.HotelManagementApplication.error.DobInFutureException;
 import com.kev.HotelManagementApplication.factory.DTOFactory;
+import com.kev.HotelManagementApplication.user.UserCredentialsDTO;
 import com.kev.HotelManagementApplication.util.StringHasher;
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@AllArgsConstructor
+//@AllArgsConstructor
+@RequiredArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private DTOFactory dtoFactory;
     private final AddressRepository addressRepository;
-
     private final StringHasher stringHasher;
+    //private final UserCredentialsDTO userCredentialsDTO;
 
     public List<CustomerDTO> getCustomerList() {
         List<CustomerDTO> list = new ArrayList<>();
@@ -91,7 +95,7 @@ public class CustomerService {
 
         String token =
                 stringHasher.hashString(
-                        name + dob + postcode + ":" + LocalDateTime.now().toString());
+                        name + ":" + LocalDateTime.now());
 
         int customerSize = customerRepository.findAll().size();
         Customer customer = new Customer(
@@ -102,6 +106,18 @@ public class CustomerService {
                 null,
                 token);
         return customerRepository.save(customer);
+    }
+
+    public Customer checkCustomerCredentials(String name) {
+        Customer customer = customerRepository.findByName(name);
+        if (customer != null) { //add dob as well as name for verification
+            String token = stringHasher.hashString
+                    (customer.getName() + ":" + LocalDateTime.now());
+            customer.setToken(token);
+            customer = customerRepository.save(customer);
+            return customer;
+        }
+        return null;
     }
 
 
