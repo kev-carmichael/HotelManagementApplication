@@ -71,9 +71,8 @@ public class CustomerService {
 
         //check if address already exists then create Address entity
         if(findIfAddressExists(streetNumber, postcode)) {
-            return null;
+            return null;  //NEED TO HANDLE THIS
         }
-//        int addressSize = addressRepository.findAll().size();
         Address address = new Address(0, streetNumber,
                 street, town, postcode); //can make id=0, as id is auto generated
         addressRepository.save(address);
@@ -87,12 +86,12 @@ public class CustomerService {
 
         //check if customer name & dob combination already exists
         if(nameAndDobAlreadyExist(name, parsedDob)) {
-            return null;
+            return null;  //NEED TO HANDLE THIS
         }
 
         String token =
                 stringHasher.hashString(
-                        name + ":" + LocalDateTime.now());
+                        name + dob + ":" + LocalDateTime.now());
 
         int customerSize = customerRepository.findAll().size();
         Customer customer = new Customer(
@@ -109,7 +108,7 @@ public class CustomerService {
         Customer customer = customerRepository.findByName(name);
         if (customer != null) { //add dob as well as name for verification
             String token = stringHasher.hashString
-                    (customer.getName() + ":" + LocalDateTime.now());
+                    (customer.getName() + customer.getDob() + ":" + LocalDateTime.now());
             customer.setToken(token);
             customer = customerRepository.save(customer);
             return customer;
