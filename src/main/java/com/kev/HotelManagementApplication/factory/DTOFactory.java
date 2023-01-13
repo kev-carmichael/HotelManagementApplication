@@ -4,12 +4,10 @@ import com.kev.HotelManagementApplication.booking.BookingDTO;
 import com.kev.HotelManagementApplication.customer.CustomerBookingsDTO;
 import com.kev.HotelManagementApplication.customer.CustomerDTO;
 import com.kev.HotelManagementApplication.customer.CustomerRepository;
-import com.kev.HotelManagementApplication.entity.Booking;
-import com.kev.HotelManagementApplication.entity.Customer;
-import com.kev.HotelManagementApplication.entity.Room;
-import com.kev.HotelManagementApplication.entity.RoomType;
+import com.kev.HotelManagementApplication.entity.*;
 import com.kev.HotelManagementApplication.room.RoomDTO;
 import com.kev.HotelManagementApplication.roomType.RoomTypeDTO;
+import com.kev.HotelManagementApplication.staff.StaffDTO;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -135,6 +133,24 @@ public class DTOFactory {
 
         return customerDTO;
     }
+
+    public StaffDTO create(Staff staff)
+    {
+        if (staff == null)
+        {
+            return null;
+        }
+
+        StaffDTO staffDTO =
+                new StaffDTO(
+                        staff.getStaffId(),
+                        staff.getEmail(),
+                        staff.getName(),
+                        staff.getToken());
+
+        return staffDTO;
+    }
+
 
 
 }

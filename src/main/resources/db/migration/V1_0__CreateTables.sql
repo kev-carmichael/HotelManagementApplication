@@ -48,6 +48,16 @@ CREATE TABLE booking
     foreign key (room) references room(room_id)
 );
 
+CREATE TABLE staff
+(
+    staff_id integer primary key auto_increment,
+    email varchar(50) not null,
+    name varchar(30) not null,
+    password varchar(50) not null,
+    token varchar(50)
+);
+
+
 INSERT INTO address (street_number, street, town, postcode)
 VALUES ('1', 'A Avenue', 'Alpha Town', 'A1 1AA'),
        ('2', 'B Boulevard', 'Bravo Town', 'B2 2BB'),
@@ -73,3 +83,7 @@ VALUES ('2023-03-26', '2023-04-02', 1, 2),
        ('2023-06-09', '2023-06-16', 2, 3),
        ('2023-08-27', '2023-09-05', 2, 1),
        ('2023-12-20', '2023-12-30', 3, 2);
+
+INSERT INTO staff(email, name, password)
+VALUES ('staff1@hotel.com', 'Staff1', 'hotelstaff1'),
+       ('staff2@hotel.com', 'Staff2', 'hotelstaff2');
