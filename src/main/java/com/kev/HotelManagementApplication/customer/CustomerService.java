@@ -104,9 +104,9 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Customer checkCustomerCredentials(String name) {
+    public Customer checkCustomerCredentials(String name, String dob) {
         Customer customer = customerRepository.findByName(name);
-        if (customer != null) { //add dob as well as name for verification
+        if (customer != null && customer.getDob().toString().equals(dob)) { //add dob as well as name for verification
             String token = stringHasher.hashString
                     (customer.getName() + customer.getDob() + ":" + LocalDateTime.now());
             customer.setToken(token);

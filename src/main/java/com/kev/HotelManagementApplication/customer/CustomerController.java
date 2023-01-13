@@ -44,10 +44,11 @@ public class CustomerController {
                 (name, dob, streetNumber, street, town, postcode));
     }
 
-    @PostMapping(path = "/checkcredentials/={name}")
+    @PostMapping(path = "/checkcredentials/={name}/={dob}")
     public CustomerDTO checkCustomerCredentials
-            (@PathVariable("name") @NotBlank(message = "Name cannot be blank") String name) {
-        return dtoFactory.createDTOWithToken(customerService.checkCustomerCredentials(name));
+            (@PathVariable("name") @NotBlank(message = "Name cannot be blank") String name,
+             @PathVariable("dob")  @NotBlank(message = "dob cannot be blank") String dob) {
+        return dtoFactory.createDTOWithToken(customerService.checkCustomerCredentials(name, dob));
     }
 
 
