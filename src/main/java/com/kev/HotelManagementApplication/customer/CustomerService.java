@@ -19,14 +19,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-//@AllArgsConstructor
-@RequiredArgsConstructor
+@AllArgsConstructor
+//@RequiredArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private DTOFactory dtoFactory;
     private final AddressRepository addressRepository;
     private final StringHasher stringHasher;
-    //private final UserCredentialsDTO userCredentialsDTO;
 
     public List<CustomerDTO> getCustomerList() {
         List<CustomerDTO> list = new ArrayList<>();
