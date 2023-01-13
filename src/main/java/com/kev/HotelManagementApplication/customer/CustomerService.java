@@ -6,7 +6,6 @@ import com.kev.HotelManagementApplication.entity.Address;
 import com.kev.HotelManagementApplication.entity.Customer;
 import com.kev.HotelManagementApplication.error.DobInFutureException;
 import com.kev.HotelManagementApplication.factory.DTOFactory;
-import com.kev.HotelManagementApplication.user.UserCredentialsDTO;
 import com.kev.HotelManagementApplication.util.StringHasher;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,6 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-//@RequiredArgsConstructor
 public class CustomerService {
     private final CustomerRepository customerRepository;
     private DTOFactory dtoFactory;

@@ -1,7 +1,6 @@
 package com.kev.HotelManagementApplication.customer;
 
 import com.kev.HotelManagementApplication.factory.DTOFactory;
-import com.kev.HotelManagementApplication.user.UserCredentialsDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
