@@ -20,7 +20,7 @@ public class StaffController
     private final StaffService staffService;
     private final DTOFactory dtoFactory;
 
-    @PostMapping(path = "/checkCredentials/={email}/={password}")
+    @PostMapping(path = "/checkcredentials/={email}/={password}")
     public StaffDTO checkCredentials
             (@PathVariable("email") @Email(message = "Email is not in the correct format") String email,
              @PathVariable("password") @NotBlank(message = "Password cannot be blank") String password) {

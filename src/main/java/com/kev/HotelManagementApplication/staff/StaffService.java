@@ -31,4 +31,13 @@ public class StaffService
         return null;
     }
 
+    public Staff checkCredentials(String token) {
+        Staff staff = staffRepository.findByToken(token);
+        if (staff != null && staff.getToken() != null)
+        {
+            return staff;
+        }
+        return null;
+    }
+
 }
