@@ -64,9 +64,9 @@ VALUES ('1', 'A Avenue', 'Alpha Town', 'A1 1AA'),
        ('3', 'C Close', 'Charles Town', 'C3 3CC');
 
 INSERT INTO customer (name, address, dob)
-VALUES ('Customer #1', 1, '1951-04-13'),
-       ('Customer #2', 2, '1970-11-22'),
-       ('Customer #3', 3, '1992-12-05');
+VALUES ('Customer1', 1, '1951-04-13'),
+       ('Customer2', 2, '1970-11-22'),
+       ('Customer3', 3, '1992-12-05');
 
 INSERT INTO room_type (type)
 VALUES ('SINGLE'),
