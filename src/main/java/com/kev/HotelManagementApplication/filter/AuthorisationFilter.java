@@ -26,77 +26,30 @@ public class AuthorisationFilter implements Filter
         HttpServletResponse response = (HttpServletResponse)servletResponse;
         String requestURI = request.getRequestURI().toLowerCase();
 
-        if (requestURI.contains("checkcredentials")
-//                || requestURI.contains("create")
-                )
-        {
-            // No authorisation required
+        if (requestURI.contains("checkcredentials")) {
             filterChain.doFilter(servletRequest, servletResponse);
         }
-        else if (staffIsAuthorised(request))
-        {
+        else if (staffIsAuthorised(request)) {
             filterChain.doFilter(servletRequest, servletResponse);
         }
-        /*else if (ownerIsAuthorised(request))
-        {
-            filterChain.doFilter(servletRequest, servletResponse);
-        }*/
-        else
-        {
+        else {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }
 
-    private boolean staffIsAuthorised(HttpServletRequest request)
-    {
+    private boolean staffIsAuthorised(HttpServletRequest request) {
         String requestURI = request.getRequestURI().toLowerCase();
-        System.out.println("Staff request URI: " + requestURI);
-        String token = request.getHeader("AUTHORIZATION");
 
-        Staff staff = staffService.checkCredentials(token);
+        if (requestURI.startsWith("/staff/logout/")) {
+            String[] parts = requestURI.substring(1).split("/");
+            int id = Integer.parseInt(parts[2].substring(1));
+            String token = parts[3].substring(1);
 
-        if (staff != null)
-        {
-            if (requestURI.startsWith("/customer/all")
-//                    || requestURI.startsWith("/owner/delete/")
-//                    || requestURI.startsWith("/pet/get/")
-            )
-            {
-                return true;
-            }
-            /*else if (requestURI.startsWith("/staff/logout/"))
-            {
-                String[] parts = requestURI.substring(1).split("/");
-                int id = Integer.parseInt(parts[2]);
-                return staff.getId() == id;
-            }*/
+            Staff staff = staffService.checkCredentials(token);
+            return staff.getStaffId() == id;
+        } else {
+            return false;
         }
-
-        return false;
     }
 
-    /*private boolean ownerIsAuthorised(HttpServletRequest request)
-    {
-        String requestURI = request.getRequestURI().toLowerCase();
-        System.out.println("OWNER REQUEST URI: " + requestURI);
-        String token = request.getHeader("AUTHORIZATION");
-
-        Owner owner = ownerService.checkCredentials(token);
-
-        if (owner != null)
-        {
-            if (requestURI.startsWith("/pet/add") ||
-                    requestURI.startsWith("/owner/update/") ||
-                    requestURI.startsWith("/owner/logout/") ||
-                    (requestURI.startsWith("/owner/get/") &&
-                            !requestURI.contains("all")))
-            {
-                String[] parts = requestURI.substring(1).split("/");
-                int id = Integer.parseInt(parts[2]);
-                return owner.getId() == id;
-            }
-        }
-
-        return false;
-    }*/
 }

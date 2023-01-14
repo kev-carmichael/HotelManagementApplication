@@ -38,4 +38,8 @@ POST http://localhost:8080/booking/update/=1/2023-06-11/2023-06-16
 POST http://localhost:8080/customer/checkcredentials/=Customer1/=1951-04-13
 
 ###
-POST http://localhost:8080/staff/checkcredentials/=staff1@hotel.com/=hotelstaff1
+POST http://localhost:8080/staff/checkcredentials/=staff2@hotel.com/=hotelstaff2
+
+###
+POST http://localhost:8080/staff/logout/=1/=-1ad7e0a3c321b63b35a579e852942483
+

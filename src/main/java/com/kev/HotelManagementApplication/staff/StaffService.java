@@ -40,4 +40,13 @@ public class StaffService
         return null;
     }
 
+    public void clearToken(int staffId)
+    {
+        Staff staff = staffRepository.findById(staffId).orElse(null);
+        if (staff != null) {
+            staff.setToken(null);
+            staffRepository.save(staff);
+        }
+    }
+
 }

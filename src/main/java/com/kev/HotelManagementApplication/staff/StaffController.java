@@ -27,4 +27,13 @@ public class StaffController
         return dtoFactory.create(staffService.checkCredentials(email, password));
     }
 
+    @PostMapping(path = "/logout/={id}/={token}")
+    public void logOut(
+            @PathVariable(name = "id")
+            @Min(value = 1, message = "staffId must be greater than zero") int id,
+            @PathVariable(name = "token") String token) {
+        staffService.clearToken(id);
+    }
+
+
 }
