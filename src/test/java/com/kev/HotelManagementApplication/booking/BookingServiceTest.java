@@ -5,6 +5,8 @@ import com.kev.HotelManagementApplication.customer.CustomerDTO;
 import com.kev.HotelManagementApplication.customer.CustomerRepository;
 import com.kev.HotelManagementApplication.customer.CustomerService;
 import com.kev.HotelManagementApplication.entity.Booking;
+import com.kev.HotelManagementApplication.entity.Customer;
+import com.kev.HotelManagementApplication.entity.Room;
 import com.kev.HotelManagementApplication.error.DateInIsSameAsOrAfterDateOutException;
 import com.kev.HotelManagementApplication.error.DobInFutureException;
 import com.kev.HotelManagementApplication.factory.DTOFactory;
@@ -14,9 +16,11 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -80,6 +84,24 @@ class BookingServiceTest {
 
     }
 
+    @Test
+    void t11_when_BookingEntityAddedHasADateInBeforeDateOut_Expect_BookingCreated() {
+        DTOFactory mockDTOFactory = mock(DTOFactory.class);
 
+        CustomerRepository mockCustomerRepository = mock(CustomerRepository.class);
+        when(mockCustomerRepository.findById(anyInt())).thenReturn(Optional.of(mock(Customer.class)));
 
+        RoomRepository mockRoomRepository = mock(RoomRepository.class);
+        when(mockRoomRepository.findById(anyInt())).thenReturn(Optional.of(mock(Room.class)));
+
+        BookingRepository mockBookingRepository = mock(BookingRepository.class);
+        when(mockBookingRepository.save(any(Booking.class))).thenReturn(mock(Booking.class));
+
+        BookingService bookingService = new BookingService(mockBookingRepository,
+                mockDTOFactory,mockCustomerRepository, mockRoomRepository);
+
+        assertNotNull(bookingService.createBooking(1, "2023-02-01", "2023-12-11",
+                1));
+    }
+    
 }
