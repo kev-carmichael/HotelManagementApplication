@@ -1,5 +1,6 @@
 ###
 GET http://localhost:8080/customer/all
+Authorization: 11ca5f9d01c13a9adb2f5b6c2a108d75
 
 ###
 GET http://localhost:8080/customer/allbookings/2
@@ -39,11 +40,11 @@ POST http://localhost:8080/customer/checkcredentials/Customer1/1951-04-13
 
 ###
 POST http://localhost:8080/customer/logout/1
-Authorization: 311fe019b1566ac55660f9ddd4493754
+Authorization: -2cc0ae922a0daac0723880d7de85a0cb
 
 ###
 POST http://localhost:8080/staff/checkcredentials/staff2@hotel.com/hotelstaff2
 
 ###
 POST http://localhost:8080/staff/logout/2
-Authorization: 67ba4cbe4ec0d729c9e0930279589d88
+Authorization: 11ca5f9d01c13a9adb2f5b6c2a108d75

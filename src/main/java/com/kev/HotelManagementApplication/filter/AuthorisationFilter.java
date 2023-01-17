@@ -46,16 +46,20 @@ public class AuthorisationFilter implements Filter
         System.out.println("REQUEST URI " + requestURI);
         String token = request.getHeader("Authorization");
 
-        if (requestURI.startsWith("/staff/logout/")) {
-            String[] parts = requestURI.substring(1).split("/");
-            int id = Integer.parseInt(parts[2]);
-            //String token = parts[3].substring(1);
+        Staff staff = staffService.checkCredentials(token);
 
-            Staff staff = staffService.checkCredentials(token);
-            return staff.getStaffId() == id;
-        } else {
-            return false;
+        if(staff != null) {
+            if (requestURI.startsWith("/customer/all")) {
+                System.out.println("STAFF NOT NULL FOR /customer/all");
+                return true;
+            } else if (requestURI.startsWith("/staff/logout/")) {
+                String[] parts = requestURI.substring(1).split("/");
+                int id = Integer.parseInt(parts[2]);
+                System.out.println("SUBSTRING: " + id);
+                return staff.getStaffId() == id;
+            }
         }
+        return false;
     }
 
     private boolean customerIsAuthorised(HttpServletRequest request) {
