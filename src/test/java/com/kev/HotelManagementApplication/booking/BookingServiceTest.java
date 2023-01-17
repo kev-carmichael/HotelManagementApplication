@@ -33,5 +33,21 @@ class BookingServiceTest {
                 ()->bookingService.createBooking(1,"2023-12-11", "2023-02-01",
                          1));
     }
-    
+
+    @Test
+    void t3_when_BookingEntityAddedHasANonValidCustomerId_Expect_NullResult() {
+
+        BookingRepository mockBookingRepository = mock(BookingRepository.class);
+        DTOFactory mockDTOFactory = mock(DTOFactory.class);
+        CustomerRepository mockCustomerRepository = mock(CustomerRepository.class);
+        RoomRepository mockRoomRepository = mock(RoomRepository.class);
+
+        BookingService bookingService = new BookingService(mockBookingRepository,
+                mockDTOFactory,mockCustomerRepository, mockRoomRepository);
+
+        assertNull(bookingService.createBooking(-1, "2023-12-11", "2024-02-01",
+                1));
+    }
+
+
 }
