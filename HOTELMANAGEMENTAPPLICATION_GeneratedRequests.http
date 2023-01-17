@@ -40,7 +40,7 @@ POST http://localhost:8080/customer/checkcredentials/Customer1/1951-04-13
 
 ###
 POST http://localhost:8080/customer/logout/1
-Authorization: -2cc0ae922a0daac0723880d7de85a0cb
+Authorization: -77dbf8293741cbe568a481f8bc4d0249
 
 ###
 POST http://localhost:8080/staff/checkcredentials/staff2@hotel.com/hotelstaff2
