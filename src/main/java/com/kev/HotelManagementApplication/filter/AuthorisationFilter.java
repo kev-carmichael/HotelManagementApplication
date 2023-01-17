@@ -78,7 +78,9 @@ public class AuthorisationFilter implements Filter
         {
             if (requestURI.startsWith("/customer/logout/") ||
                     requestURI.startsWith("/booking/add/") ||
-                    requestURI.startsWith("/booking/delete/")) {
+                    requestURI.startsWith("/booking/delete/") ||
+                    requestURI.startsWith("/booking/update/") ||
+                    requestURI.startsWith("/customer/allbookings/")) {
                 String[] parts = requestURI.substring(1).split("/");
                 int id = Integer.parseInt(parts[2]);
                 return customer.getCustomerId() == id;

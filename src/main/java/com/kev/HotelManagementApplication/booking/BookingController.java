@@ -42,8 +42,10 @@ public class BookingController {
         return bookingService.deleteBooking(id);
     }
 
-    @PostMapping(path = "/update/={id}/{datein}/{dateout}")
-    public BookingDTO updateBooking(@PathVariable(name = "id")
+    @PostMapping(path = "/update/{customerid}/{id}/{datein}/{dateout}")
+    public BookingDTO updateBooking(@PathVariable("customerid")
+                                        @Min(value = 1, message = "customerId must be greater than zero") int customerid,
+                                    @PathVariable(name = "id")
                                     @Min(value = 1, message = "bookingId must be greater than zero") int id,
                                     @PathVariable(name = "datein")String dateIn,
                                     @PathVariable(name = "dateout")String dateOut) {

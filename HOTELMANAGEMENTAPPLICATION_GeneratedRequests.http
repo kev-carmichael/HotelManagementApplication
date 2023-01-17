@@ -3,7 +3,8 @@ GET http://localhost:8080/customer/all
 Authorization: 7e7aed3da48fd59f1c06a748b5ec2dfb
 
 ###
-GET http://localhost:8080/customer/allbookings/2
+GET http://localhost:8080/customer/allbookings/1
+Authorization: 532552db908e5002da1058329fa95554
 
 ###
 POST http://localhost:8080/customer/add/Customer4/1971-06-11/44/New_Road/Newton/NE45TY
@@ -41,7 +42,8 @@ DELETE http://localhost:8080/booking/delete/1/3
 Authorization: 532552db908e5002da1058329fa95554
 
 ###
-POST http://localhost:8080/booking/update/=1/2023-06-11/2023-06-16
+POST http://localhost:8080/booking/update/1/1/2024-06-11/2024-06-16
+Authorization: 532552db908e5002da1058329fa95554
 
 ###
 POST http://localhost:8080/customer/checkcredentials/Customer1/1951-04-13
