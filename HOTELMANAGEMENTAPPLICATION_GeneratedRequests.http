@@ -1,6 +1,6 @@
 ###
 GET http://localhost:8080/customer/all
-Authorization: 11ca5f9d01c13a9adb2f5b6c2a108d75
+Authorization: 7e7aed3da48fd59f1c06a748b5ec2dfb
 
 ###
 GET http://localhost:8080/customer/allbookings/2
@@ -10,6 +10,7 @@ POST http://localhost:8080/customer/add/=Customer4/=1971-06-11/=44/=New_Road/=Ne
 
 ###
 GET http://localhost:8080/room/all
+Authorization: 7e7aed3da48fd59f1c06a748b5ec2dfb
 
 ###
 GET http://localhost:8080/roomtype/all
@@ -25,10 +26,11 @@ POST http://localhost:8080/roomtype/update/3/=BEING_REPAIRED
 
 ###
 GET http://localhost:8080/booking/all
+Authorization: 7e7aed3da48fd59f1c06a748b5ec2dfb
 
 ###
 POST http://localhost:8080/booking/add/1/2023-07-04/2023-07-11/1
-Authorization: -55cad1852ab70a4fad91b99f7caa93a9
+Authorization: -76fdbfb1b2b6c82390298fc56e04e7bf
 
 ###
 DELETE http://localhost:8080/booking/delete/=3
@@ -41,11 +43,11 @@ POST http://localhost:8080/customer/checkcredentials/Customer1/1951-04-13
 
 ###
 POST http://localhost:8080/customer/logout/1
-Authorization: -55cad1852ab70a4fad91b99f7caa93a9
+Authorization: -76fdbfb1b2b6c82390298fc56e04e7bf
 
 ###
 POST http://localhost:8080/staff/checkcredentials/staff2@hotel.com/hotelstaff2
 
 ###
 POST http://localhost:8080/staff/logout/2
-Authorization: 11ca5f9d01c13a9adb2f5b6c2a108d75
+Authorization: 7e7aed3da48fd59f1c06a748b5ec2dfb

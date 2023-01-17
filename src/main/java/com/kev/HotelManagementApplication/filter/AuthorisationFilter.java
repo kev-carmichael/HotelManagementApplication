@@ -49,7 +49,9 @@ public class AuthorisationFilter implements Filter
         Staff staff = staffService.checkCredentials(token);
 
         if(staff != null) {
-            if (requestURI.startsWith("/customer/all")) {
+            if (requestURI.startsWith("/customer/all") ||
+                    requestURI.startsWith("/booking/all") ||
+                    requestURI.startsWith("/room/all")){
                 System.out.println("STAFF NOT NULL FOR /customer/all");
                 return true;
             } else if (requestURI.startsWith("/staff/logout/")) {
