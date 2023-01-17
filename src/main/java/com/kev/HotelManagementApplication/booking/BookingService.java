@@ -40,7 +40,7 @@ public class BookingService {
         return list;
     }
 
-    public Booking createBooking(String dateIn, String dateOut, int customerid, int roomid) {
+    public Booking createBooking(int customerid, String dateIn, String dateOut, int roomid) {
 
         Optional<Customer> customer = customerRepository.
                 findById(customerid);

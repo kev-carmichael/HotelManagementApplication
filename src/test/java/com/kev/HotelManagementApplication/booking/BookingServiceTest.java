@@ -30,8 +30,8 @@ class BookingServiceTest {
 
         assertThrows(
                 DateInIsSameAsOrAfterDateOutException.class,
-                ()->bookingService.createBooking("2023-12-11", "2023-02-01",
-                        1, 1));
+                ()->bookingService.createBooking(1,"2023-12-11", "2023-02-01",
+                         1));
     }
     
 }

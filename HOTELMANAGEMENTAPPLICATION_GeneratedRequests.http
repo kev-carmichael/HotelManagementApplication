@@ -27,7 +27,8 @@ POST http://localhost:8080/roomtype/update/3/=BEING_REPAIRED
 GET http://localhost:8080/booking/all
 
 ###
-POST http://localhost:8080/booking/add/2023-07-04/2023-07-11/2/2
+POST http://localhost:8080/booking/add/1/2023-07-04/2023-07-11/1
+Authorization: -55cad1852ab70a4fad91b99f7caa93a9
 
 ###
 DELETE http://localhost:8080/booking/delete/=3
@@ -40,7 +41,7 @@ POST http://localhost:8080/customer/checkcredentials/Customer1/1951-04-13
 
 ###
 POST http://localhost:8080/customer/logout/1
-Authorization: -77dbf8293741cbe568a481f8bc4d0249
+Authorization: -55cad1852ab70a4fad91b99f7caa93a9
 
 ###
 POST http://localhost:8080/staff/checkcredentials/staff2@hotel.com/hotelstaff2

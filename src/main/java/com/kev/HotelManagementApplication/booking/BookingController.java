@@ -22,14 +22,14 @@ public class BookingController {
         return bookingService.getBookingList();
     }
 
-    @PostMapping(path = "/add/{datein}/{dateout}/{customerid}/{roomid}")
-    public BookingDTO addBooking(@PathVariable("datein") String dateIn,
+    @PostMapping(path = "/add/{customerid}/{datein}/{dateout}/{roomid}")
+    public BookingDTO addBooking(@PathVariable("customerid") int customerid,
+                                 @PathVariable("datein") String dateIn,
                                  @PathVariable("dateout") String dateOut,
-                                 @PathVariable("customerid") int customerid,
                                  @PathVariable("roomid") int roomid)
     {
         return dtoFactory.createDTO(bookingService.createBooking
-                (dateIn, dateOut, customerid, roomid));
+                (customerid, dateIn, dateOut, roomid));
     }
 
 
