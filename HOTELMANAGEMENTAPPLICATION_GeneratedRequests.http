@@ -6,7 +6,7 @@ Authorization: 7e7aed3da48fd59f1c06a748b5ec2dfb
 GET http://localhost:8080/customer/allbookings/2
 
 ###
-POST http://localhost:8080/customer/add/=Customer4/=1971-06-11/=44/=New_Road/=Newton/=NE45TY
+POST http://localhost:8080/customer/add/Customer4/1971-06-11/44/New_Road/Newton/NE45TY
 
 ###
 GET http://localhost:8080/room/all

@@ -27,7 +27,8 @@ public class AuthorisationFilter implements Filter
         HttpServletResponse response = (HttpServletResponse)servletResponse;
         String requestURI = request.getRequestURI().toLowerCase();
 
-        if (requestURI.contains("checkcredentials")) {
+        if (requestURI.contains("checkcredentials") ||
+                requestURI.startsWith("/customer/add/")) {
             filterChain.doFilter(servletRequest, servletResponse);
         }
         else if (staffIsAuthorised(request)) {
