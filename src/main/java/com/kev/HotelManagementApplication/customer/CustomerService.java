@@ -116,5 +116,21 @@ public class CustomerService {
         return null;
     }
 
+    public Customer checkCustomerCredentials(String token) {
+        Customer customer = customerRepository.findByToken(token);
+        if (customer != null && customer.getToken() != null) {
+            return customer;
+        }
+        return null;
+    }
+
+    public void clearToken(int id) {
+        Customer customer = customerRepository.findById(id).orElse(null);
+        if(customer != null && customer.getToken() != null) {
+            customer.setToken(null);
+            customerRepository.save(customer);
+        }
+    }
+
 
 }

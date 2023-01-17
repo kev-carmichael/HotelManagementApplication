@@ -35,11 +35,15 @@ DELETE http://localhost:8080/booking/delete/=3
 POST http://localhost:8080/booking/update/=1/2023-06-11/2023-06-16
 
 ###
-POST http://localhost:8080/customer/checkcredentials/=Customer1/=1951-04-13
+POST http://localhost:8080/customer/checkcredentials/Customer1/1951-04-13
 
 ###
-POST http://localhost:8080/staff/checkcredentials/=staff2@hotel.com/=hotelstaff2
+POST http://localhost:8080/customer/logout/1
+Authorization: 311fe019b1566ac55660f9ddd4493754
 
 ###
-POST http://localhost:8080/staff/logout/=1/=-1ad7e0a3c321b63b35a579e852942483
+POST http://localhost:8080/staff/checkcredentials/staff2@hotel.com/hotelstaff2
 
+###
+POST http://localhost:8080/staff/logout/2
+Authorization: 67ba4cbe4ec0d729c9e0930279589d88

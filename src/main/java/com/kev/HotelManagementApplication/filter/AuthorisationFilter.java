@@ -1,6 +1,7 @@
 package com.kev.HotelManagementApplication.filter;
 
 import com.kev.HotelManagementApplication.customer.CustomerService;
+import com.kev.HotelManagementApplication.entity.Customer;
 import com.kev.HotelManagementApplication.entity.Staff;
 import com.kev.HotelManagementApplication.staff.StaffService;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,9 @@ public class AuthorisationFilter implements Filter
         else if (staffIsAuthorised(request)) {
             filterChain.doFilter(servletRequest, servletResponse);
         }
+        else if (customerIsAuthorised(request)) {
+            filterChain.doFilter(servletRequest, servletResponse);
+        }
         else {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
         }
@@ -39,11 +43,13 @@ public class AuthorisationFilter implements Filter
 
     private boolean staffIsAuthorised(HttpServletRequest request) {
         String requestURI = request.getRequestURI().toLowerCase();
+        System.out.println("REQUEST URI " + requestURI);
+        String token = request.getHeader("Authorization");
 
         if (requestURI.startsWith("/staff/logout/")) {
             String[] parts = requestURI.substring(1).split("/");
-            int id = Integer.parseInt(parts[2].substring(1));
-            String token = parts[3].substring(1);
+            int id = Integer.parseInt(parts[2]);
+            //String token = parts[3].substring(1);
 
             Staff staff = staffService.checkCredentials(token);
             return staff.getStaffId() == id;
@@ -51,5 +57,24 @@ public class AuthorisationFilter implements Filter
             return false;
         }
     }
+
+    private boolean customerIsAuthorised(HttpServletRequest request) {
+        String requestURI = request.getRequestURI().toLowerCase();
+        String token = request.getHeader("AUTHORIZATION");
+
+        Customer customer = customerService.checkCustomerCredentials(token);
+
+        if (customer != null)
+        {
+            if (requestURI.startsWith("/customer/logout/") &&
+                            !requestURI.contains("all")) {
+                String[] parts = requestURI.substring(1).split("/");
+                int id = Integer.parseInt(parts[2]);
+                return customer.getCustomerId() == id;
+            }
+        }
+        return false;
+    }
+
 
 }
