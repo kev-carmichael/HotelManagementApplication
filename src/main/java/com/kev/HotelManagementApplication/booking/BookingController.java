@@ -33,9 +33,11 @@ public class BookingController {
     }
 
 
-    @DeleteMapping(path = "/delete/={id}")
-    public boolean deleteBooking(@PathVariable(name = "id")
-                                 @Min(value = 1, message = "bookingId must be greater than zero") int id)
+    @DeleteMapping(path = "/delete/{customerid}/{id}")
+    public boolean deleteBooking(@PathVariable("customerid")
+                                     @Min(value = 1, message = "customerId must be greater than zero") int customerid,
+                                    @PathVariable(name = "id")
+                                    @Min(value = 1, message = "bookingId must be greater than zero") int id)
     {
         return bookingService.deleteBooking(id);
     }
