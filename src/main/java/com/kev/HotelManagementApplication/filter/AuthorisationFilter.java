@@ -52,7 +52,9 @@ public class AuthorisationFilter implements Filter
             if (requestURI.startsWith("/customer/all") ||
                     requestURI.startsWith("/booking/all") ||
                     requestURI.startsWith("/room/all") ||
-                    requestURI.startsWith("/roomtype/all")){
+                    requestURI.startsWith("/roomtype/all") ||
+                    requestURI.startsWith("/roomtype/update/") ||
+                    requestURI.startsWith("/roomtype/add/")){
                 return true;
             } else if (requestURI.startsWith("/staff/logout/")) {
                 String[] parts = requestURI.substring(1).split("/");
