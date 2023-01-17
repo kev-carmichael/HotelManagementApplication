@@ -51,8 +51,8 @@ public class AuthorisationFilter implements Filter
         if(staff != null) {
             if (requestURI.startsWith("/customer/all") ||
                     requestURI.startsWith("/booking/all") ||
-                    requestURI.startsWith("/room/all")){
-                System.out.println("STAFF NOT NULL FOR /customer/all");
+                    requestURI.startsWith("/room/all") ||
+                    requestURI.startsWith("/roomtype/all")){
                 return true;
             } else if (requestURI.startsWith("/staff/logout/")) {
                 String[] parts = requestURI.substring(1).split("/");
