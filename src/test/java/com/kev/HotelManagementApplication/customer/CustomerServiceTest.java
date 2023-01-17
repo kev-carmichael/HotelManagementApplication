@@ -5,6 +5,7 @@ import com.kev.HotelManagementApplication.entity.Address;
 import com.kev.HotelManagementApplication.entity.Customer;
 import com.kev.HotelManagementApplication.error.DobInFutureException;
 import com.kev.HotelManagementApplication.factory.DTOFactory;
+import com.kev.HotelManagementApplication.util.StringHasher;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -16,24 +17,22 @@ import static org.mockito.Mockito.*;
 
 class CustomerServiceTest {
 
-    /*@Test
-    void t4_when_CustomerEntityAddedHasADobAfterCurrentDate_Expect_DobInFutureException() {
-
-        LocalDate dobFuture = LocalDate.now().plusYears(10);
+    @Test
+    void t1_when_CustomerEntityAddedHasADobAfterCurrentDate_Expect_DobInFutureException() {
 
         AddressRepository mockAddressRepository = mock(AddressRepository.class);
         CustomerRepository mockCustomerRepository = mock(CustomerRepository.class);
         DTOFactory mockDTOFactory = mock(DTOFactory.class);
+        StringHasher mockStringHasher = mock(StringHasher.class);
 
-        //NOW NEED TO INCLUDE MOCK STRINGHASHER
         CustomerService customerService = new CustomerService(mockCustomerRepository,
-                mockDTOFactory, mockAddressRepository);
+                mockDTOFactory, mockAddressRepository, mockStringHasher);
 
         assertThrows(
                 DobInFutureException.class,
                 ()->customerService.createCustomer("Master A Test", "2033-01-08",
                         "1", "Test Street", "Test Town", "T35TY")
         );
-    }*/
+    }
 
 }
