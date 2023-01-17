@@ -65,28 +65,35 @@ public class CustomerService {
         return false;
     }
 
+    public boolean dobIsValidDate(String dob) {
+        //check if dob is after today's date
+        LocalDate parsedDob = LocalDate.parse(dob);
+        LocalDate today = LocalDate.now();
+        if(parsedDob.isAfter(today)){
+            return false;
+        }
+        return true;
+    }
 
     public Customer createCustomer(String name, String dob, String streetNumber,
                                    String street, String town, String postcode) {
 
         //check if address already exists then create Address entity
         if(findIfAddressExists(streetNumber, postcode)) {
-            return null;  //NEED TO HANDLE THIS
+            return null;
         }
         Address address = new Address(0, streetNumber,
-                street, town, postcode); //can make id=0, as id is auto generated
+                street, town, postcode); //id=0, as id is auto generated
         addressRepository.save(address);
 
         //check if dob is after today's date
-        LocalDate parsedDob = LocalDate.parse(dob);
-        LocalDate today = LocalDate.now();
-        if(parsedDob.isAfter(today)){
-            throw new DobInFutureException(parsedDob);
+        if(!dobIsValidDate(dob)) {
+            throw new DobInFutureException();
         }
 
         //check if customer name & dob combination already exists
-        if(nameAndDobAlreadyExist(name, parsedDob)) {
-            return null;  //NEED TO HANDLE THIS
+        if(nameAndDobAlreadyExist(name, LocalDate.parse(dob))) {
+            return null;
         }
 
         String token =
@@ -97,7 +104,7 @@ public class CustomerService {
         Customer customer = new Customer(
                 (customerSize + 1),
                 name,
-                parsedDob,
+                LocalDate.parse(dob),
                 address,
                 null,
                 token);

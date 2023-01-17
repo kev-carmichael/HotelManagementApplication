@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class DobInFutureException extends RuntimeException{
 
-    public DobInFutureException(LocalDate dob) {
+    public DobInFutureException() {
         super("Error - date of birth is beyond today's date");
     }
 }
